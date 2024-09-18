@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Khaatabook</title>
+    <link rel="stylesheet" href="/public/css/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body>
+    <main class="w-full min-h-screen bg-zinc-100 font-['Helvetica']">
+      <!-- Navbar -->
+      <nav
+        class="flex flex-col sm:flex-row sm:justify-between px-5 sm:px-10 py-5"
+      >
+        <h3 class="text-2xl tracking-tight">Khaatabook</h3>
+        <div
+          class="navlinks flex flex-col sm:flex-row gap-3 sm:gap-5 mt-3 sm:mt-0"
+        >
+          <a
+            class="tracking-tight hover:text-blue-500 transition duration-300 ease-in-out"
+            href="/"
+            >Home</a
+          >
+          <a
+            class="tracking-tight hover:text-blue-500 transition duration-300 ease-in-out"
+            href="/create"
+            >Create New Hisaab</a
+          >
+        </div>
+      </nav>
+
+      <!-- Content -->
+      <div class="px-5 sm:px-10 hisaabs">
+        <h3
+          class="capitalize text-xl sm:text-2xl font-medium mb-5 mt-8 tracking-tight"
+        >
+          All hisaab kitaab
+        </h3>
+
+        <% if(files.length > 0){ %> <% files.forEach(function(file){ %>
+        <div
+          class="hisaab w-full sm:w-auto flex flex-col sm:flex-row items-center py-3 mb-3 px-5 bg-blue-500 flex justify-between rounded-md transition duration-300 ease-in-out hover:shadow-lg hover:bg-blue-600"
+        >
+          <div
+            class="flex flex-col sm:flex-row sm:gap-4 gap-2 text-white items-start sm:items-center w-full sm:w-auto justify-between"
+          >
+            <h3 class="text-lg sm:text-2xl"><%= file.name.split(".")[0] %></h3>
+
+            <!-- Responsive h5 tag for different devices -->
+            <h5 class="text-sm sm:text-base md:text-lg lg:text-xl">
+              <%= file.time %>
+            </h5>
+
+            <a href="/hisaab/<%= file.name %>">
+              <i
+                class="w-6 h-6 text-blue-500 flex items-center justify-center bg-white rounded-full ri-arrow-right-line hover:bg-blue-300 transition transform hover:scale-125"
+              ></i>
+            </a>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex gap-3 items-center mt-3 sm:mt-0">
+            <a href="/edit/<%= file.name %>">
+              <i
+                class="text-white ri-pencil-line hover:text-blue-300 transition transform hover:scale-110 duration-300 ease-in-out"
+              ></i>
+            </a>
+            <a href="/delete/<%= file.name %>">
+              <i
+                class="w-6 h-6 text-red-500 flex items-center justify-center bg-white rounded-full ri-delete-bin-line hover:bg-red-300 transition transform hover:scale-110 duration-300 ease-in-out"
+              ></i>
+            </a>
+          </div>
+        </div>
+        <% }) %> <% } else { %>
+        <h3 class="text-zinc-500">
+          Nothing to show, create hisaabs to see something...
+        </h3>
+        <% } %>
+      </div>
+    </main>
+  </body>
+</html>
